@@ -1,0 +1,30 @@
+admin_gallery:
+    path:     /
+    defaults: { _controller: "RudakGalleryBundle:Gallery:index" }
+
+admin_gallery_show:
+    path:     /{id}/show
+    defaults: { _controller: "RudakGalleryBundle:Gallery:show" }
+
+admin_gallery_new:
+    path:     /new
+    defaults: { _controller: "RudakGalleryBundle:Gallery:new" }
+
+admin_gallery_create:
+    path:     /create
+    defaults: { _controller: "RudakGalleryBundle:Gallery:create" }
+    requirements: { _method: post }
+
+admin_gallery_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "RudakGalleryBundle:Gallery:edit" }
+
+admin_gallery_update:
+    path:     /{id}/update
+    defaults: { _controller: "RudakGalleryBundle:Gallery:update" }
+    requirements: { _method: post|put }
+
+admin_gallery_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RudakGalleryBundle:Gallery:delete" }
+    requirements: { _method: post|delete }

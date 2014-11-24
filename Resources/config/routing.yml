@@ -1,0 +1,4 @@
+rudak_gallery_admin_gallery:
+    resource: "@RudakGalleryBundle/Resources/config/routing/gallery.yml"
+    prefix:   /admin/gallery
+
