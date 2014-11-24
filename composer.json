@@ -2,7 +2,7 @@
     "name": "rudak/gallery-bundle",
     "type": "symfony-bundle",
     "description": "Symfony2 GaleryBundle, a simple gallery bundle for your website",
-    "keywords": ["gallery,pictures"],
+    "keywords": ["gallery","pictures"],
     "license": "MIT",
     "authors": [
         {
