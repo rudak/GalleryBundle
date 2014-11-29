@@ -1,0 +1,48 @@
+{% extends admin_layout %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-select/dist/css/bootstrap-select.min.css') }}"/>
+{% endblock %}
+
+{% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery') }}">
+                Galeries
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery_picture') }}">
+                Photos
+            </a>
+        </li>
+        <li class="active">Ajouter</li>
+    </ol>
+
+    <div class="form_perso">
+        {{ form(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-select/dist/js/bootstrap-select.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('vendors/bootstrap-select/dist/js/i18n/defaults-fr_FR.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('vendors/bootstrap.file-input.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // http://silviomoreto.github.io/bootstrap-select/
+            $('.selectpicker').selectpicker({
+                title: 'coucou'
+            });
+            $('input[type=file]').bootstrapFileInput({
+                title: 'Parcourir...'
+            });
+        });
+    </script>
+{% endblock %}

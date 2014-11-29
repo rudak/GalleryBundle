@@ -15,13 +15,15 @@ class GalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('public')
+            ->add('name', 'text', array(
+                'label' => 'Nom'
+            ))
             ->add('description')
-            ->add('date')
-        ;
+            ->add('public', 'checkbox', array(
+                'required' => false
+            ));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -5,40 +5,39 @@ namespace Rudak\GalleryBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Rudak\GalleryBundle\Entity\Gallery;
-use Rudak\GalleryBundle\Form\GalleryType;
+use Rudak\GalleryBundle\Entity\Picture;
+use Rudak\GalleryBundle\Form\PictureType;
 
 /**
- * Gallery controller.
+ * Picture controller.
  *
  */
-class GalleryController extends Controller
+class PictureController extends Controller
 {
 
     /**
-     * Lists all Gallery entities.
+     * Lists all Picture entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('RudakGalleryBundle:Gallery')->findAll();
+        $entities = $em->getRepository('RudakGalleryBundle:Picture')->getPicturesListAdmin();
 
-        return $this->render('RudakGalleryBundle:Gallery:index.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:index.html.twig', array(
             'entities' => $entities,
         ));
     }
 
     /**
-     * Creates a new Gallery entity.
+     * Creates a new Picture entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Gallery();
-        $entity->setDate(new \Datetime('NOW'));
-        $form = $this->createCreateForm($entity);
+        $entity = new Picture();
+        $form   = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -46,26 +45,26 @@ class GalleryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_gallery_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_gallery_picture_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('RudakGalleryBundle:Gallery:new.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Gallery entity.
+     * Creates a form to create a Picture entity.
      *
-     * @param Gallery $entity The entity
+     * @param Picture $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Gallery $entity)
+    private function createCreateForm(Picture $entity)
     {
-        $form = $this->createForm(new GalleryType(), $entity, array(
-            'action' => $this->generateUrl('admin_gallery_create'),
+        $form = $this->createForm(new PictureType(), $entity, array(
+            'action' => $this->generateUrl('admin_gallery_picture_create'),
             'method' => 'POST',
         ));
 
@@ -73,66 +72,67 @@ class GalleryController extends Controller
             'label' => 'Ajouter',
             'attr'  => array(
                 'class' => 'btn btn-success'
-            )));
+            )
+        ));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Gallery entity.
+     * Displays a form to create a new Picture entity.
      *
      */
     public function newAction()
     {
-        $entity = new Gallery();
+        $entity = new Picture();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('RudakGalleryBundle:Gallery:new.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Gallery entity.
+     * Finds and displays a Picture entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('RudakGalleryBundle:Gallery')->find($id);
+        $entity = $em->getRepository('RudakGalleryBundle:Picture')->getPicturesByIdAdmin($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Gallery entity.');
+            throw $this->createNotFoundException('Unable to find Picture entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('RudakGalleryBundle:Gallery:show.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Gallery entity.
+     * Displays a form to edit an existing Picture entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('RudakGalleryBundle:Gallery')->find($id);
+        $entity = $em->getRepository('RudakGalleryBundle:Picture')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Gallery entity.');
+            throw $this->createNotFoundException('Unable to find Picture entity.');
         }
 
         $editForm   = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('RudakGalleryBundle:Gallery:edit.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -140,16 +140,16 @@ class GalleryController extends Controller
     }
 
     /**
-     * Creates a form to edit a Gallery entity.
+     * Creates a form to edit a Picture entity.
      *
-     * @param Gallery $entity The entity
+     * @param Picture $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Gallery $entity)
+    private function createEditForm(Picture $entity)
     {
-        $form = $this->createForm(new GalleryType(), $entity, array(
-            'action' => $this->generateUrl('admin_gallery_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new PictureType(), $entity, array(
+            'action' => $this->generateUrl('admin_gallery_picture_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -163,17 +163,17 @@ class GalleryController extends Controller
     }
 
     /**
-     * Edits an existing Gallery entity.
+     * Edits an existing Picture entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('RudakGalleryBundle:Gallery')->find($id);
+        $entity = $em->getRepository('RudakGalleryBundle:Picture')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Gallery entity.');
+            throw $this->createNotFoundException('Unable to find Picture entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -183,10 +183,10 @@ class GalleryController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_gallery_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_gallery_picture_edit', array('id' => $id)));
         }
 
-        return $this->render('RudakGalleryBundle:Gallery:edit.html.twig', array(
+        return $this->render('RudakGalleryBundle:Picture:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -194,7 +194,7 @@ class GalleryController extends Controller
     }
 
     /**
-     * Deletes a Gallery entity.
+     * Deletes a Picture entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -204,21 +204,21 @@ class GalleryController extends Controller
 
         if ($form->isValid()) {
             $em     = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('RudakGalleryBundle:Gallery')->find($id);
+            $entity = $em->getRepository('RudakGalleryBundle:Picture')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Gallery entity.');
+                throw $this->createNotFoundException('Unable to find Picture entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_gallery'));
+        return $this->redirect($this->generateUrl('admin_gallery_picture'));
     }
 
     /**
-     * Creates a form to delete a Gallery entity by id.
+     * Creates a form to delete a Picture entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -227,7 +227,7 @@ class GalleryController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_gallery_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_gallery_picture_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array(
                 'label' => 'Supprimer',

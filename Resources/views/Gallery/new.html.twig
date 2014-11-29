@@ -1,15 +1,22 @@
-{% extends '::base.html.twig' %}
+{% extends admin_layout %}
 
-{% block body -%}
-    <h1>Gallery creation</h1>
+{% block layout %}
 
-    {{ form(form) }}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery') }}">
+                Galeries
+            </a>
+        </li>
+        <li class="active">Ajouter</li>
+    </ol>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_gallery') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <div class="form_perso">
+        {{ form(form) }}
+    </div>
+
+
 {% endblock %}

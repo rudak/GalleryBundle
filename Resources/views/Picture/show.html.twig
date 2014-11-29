@@ -1,0 +1,55 @@
+{% extends admin_layout %}
+
+{% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery') }}">
+                Galeries
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_gallery_picture') }}">
+                Photos
+            </a>
+        </li>
+        <li class="active">Voir</li>
+    </ol>
+
+    <p>
+        <a href="{{ path('admin_gallery_picture_new') }}"
+           class="btn btn-success btn-lg">
+            Ajouter une photo
+        </a>
+    </p>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Image</th>
+            <td>
+                <img src="{{ entity.getwebpath|imagine_filter('admin_show') }}" alt=""/>
+            </td>
+        </tr>
+        <tr>
+            <th>Galerie</th>
+            <td>{{ entity.gallery }}</td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>{{ entity.path }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <p>
+        <a href="{{ path('admin_gallery_picture_edit', { 'id': entity.id }) }}" class="btn btn-warning">
+            Modifier
+        </a>
+    </p>
+    {{ form(delete_form) }}
+
+{% endblock %}

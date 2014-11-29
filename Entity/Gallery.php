@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Gallery
  *
- * @ORM\Table()
+ * @ORM\Table(name="rudakGallery")
  * @ORM\Entity(repositoryClass="Rudak\GalleryBundle\Entity\GalleryRepository")
  */
 class Gallery
@@ -31,7 +31,7 @@ class Gallery
     /**
      * @var boolean
      *
-     * @ORM\Column(name="public", type="boolean")
+     * @ORM\Column(name="public", type="boolean",nullable=true)
      */
     private $public;
 
@@ -49,11 +49,17 @@ class Gallery
      */
     private $date;
 
+    /**
+     * @ORM\oneToMany(targetEntity="Picture",
+     * mappedBy="gallery"
+     * )
+     */
+    private $pictures;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +82,7 @@ class Gallery
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -99,7 +105,7 @@ class Gallery
     /**
      * Get public
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPublic()
     {
@@ -122,7 +128,7 @@ class Gallery
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -145,10 +151,15 @@ class Gallery
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
         return $this->date;
+    }
+
+    public function __toString()
+    {
+        return ucfirst($this->name) . ' | Ajouté le ' . $this->date->format('d/m/y');
     }
 }
