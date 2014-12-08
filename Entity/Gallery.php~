@@ -51,8 +51,7 @@ class Gallery
 
     /**
      * @ORM\oneToMany(targetEntity="Picture",
-     * mappedBy="gallery",
-     * cascade={"remove"}
+     * mappedBy="gallery"
      * )
      */
     private $pictures;
@@ -163,45 +162,5 @@ class Gallery
     public function __toString()
     {
         return ucfirst($this->name) . ' | Ajouté le ' . $this->date->format('d/m/y');
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add pictures
-     *
-     * @param \Rudak\GalleryBundle\Entity\Picture $pictures
-     * @return Gallery
-     */
-    public function addPicture(\Rudak\GalleryBundle\Entity\Picture $pictures)
-    {
-        $this->pictures[] = $pictures;
-
-        return $this;
-    }
-
-    /**
-     * Remove pictures
-     *
-     * @param \Rudak\GalleryBundle\Entity\Picture $pictures
-     */
-    public function removePicture(\Rudak\GalleryBundle\Entity\Picture $pictures)
-    {
-        $this->pictures->removeElement($pictures);
-    }
-
-    /**
-     * Get pictures
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPictures()
-    {
-        return $this->pictures;
     }
 }

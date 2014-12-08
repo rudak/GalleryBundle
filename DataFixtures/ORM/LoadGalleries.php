@@ -16,7 +16,7 @@ class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $galleries = array();
-        for ($i = 0; $i < 49; $i++) {
+        for ($i = 0; $i < 9; $i++) {
             $galleries[$i] = New Gallery();
             $galleries[$i]->setName(Syllabeur::getMots(rand(1, 2)));
             $galleries[$i]->setDescription(Syllabeur::getMots(rand(5, 60)));

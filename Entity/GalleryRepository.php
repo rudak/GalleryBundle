@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class GalleryRepository extends EntityRepository
 {
+    public function getGalleryById($id)
+    {
+        $qb = $this->createQueryBuilder('g')
+            ->addSelect('p')
+            ->leftJoin('g.pictures', 'p')
+            ->where('g.public = :public')->setParameter('public', true)
+            ->andWhere('g.id = :id')->setParameter('id', $id)
+            ->getQuery();
+        return $qb->getOneOrNullResult();
+    }
 }

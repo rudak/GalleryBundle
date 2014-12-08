@@ -22,7 +22,7 @@
         <li class="active">Modifier</li>
     </ol>
     <p>
-        <img src="{{ entity.getwebpath|imagine_filter('admin_show') }}" alt="" class="apercu_show"/>
+        <img src="{{ entity.getwebpath|default('uploads/gallery/no-image.jpg')|imagine_filter('admin_show') }}" alt="" class="apercu_show"/>
     </p>
     <div class="form_perso">
         {{ form(edit_form) }}

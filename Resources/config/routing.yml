@@ -1,3 +1,11 @@
+rudak_gallery_index:
+    pattern: /galerie
+    defaults: { _controller: RudakGalleryBundle:Default:index }
+
+rudak_gallery_gallery:
+    pattern: /galerie/{id}/{slug}
+    defaults: { _controller: RudakGalleryBundle:Default:galleryById }
+
 rudak_gallery_admin_gallery_picture:
     resource: "@RudakGalleryBundle/Resources/config/routing/picture.yml"
     prefix:   /admin/gallery/picture

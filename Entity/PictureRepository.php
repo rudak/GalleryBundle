@@ -12,6 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class PictureRepository extends EntityRepository
 {
+    public function getGalleryList()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('g')
+            ->leftJoin('p.gallery', 'g')
+            ->groupBy('p.gallery')
+            ->where('g.public = :public')->setParameter('public', true)
+            ->orderBy('g.id', 'DESC')
+            ->getQuery();
+        return $qb->execute();
+    }
+
     public function getPicturesListAdmin()
     {
         $qb = $this->createQueryBuilder('p')
