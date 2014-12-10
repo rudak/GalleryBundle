@@ -32,11 +32,19 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ entity.description }}</td>
+            <td>
+                <div class="well">
+                    {{ entity.description }}
+                </div>
+            </td>
         </tr>
         <tr>
             <th>Date</th>
-            <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            <td>
+                <span class="label label-info">
+                    {{ entity.date|date('Y-m-d H:i:s') }}
+                </span>
+            </td>
         </tr>
         </tbody>
     </table>

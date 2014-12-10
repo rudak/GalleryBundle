@@ -17,8 +17,9 @@
                             <div class="caption">
 
                                 <a class="btn btn-primary btn-block"
-                                   href="{{ path('rudak_gallery_gallery',{id:picture.gallery.id,slug:picture.gallery.name|slugit}) }}">
-                                    {{ picture.gallery.name }}
+                                   href="{{ path('rudak_gallery_gallery',{id:picture.gallery.id,slug:picture.gallery.name|slugit}) }}"
+                                   title="{{ picture.gallery.name }} | Galerie crée le {{ picture.gallery.date|date('d/m/Y') }} [{{ picture.gallery|length }}]">
+                                    {{ picture.gallery.name|capitalize }}
                                 </a>
                             </div>
                         </div>

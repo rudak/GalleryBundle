@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr {% if entity.public == false %}class="warning"{% endif %}>
                 <td>{{ entity.name }}</td>
                 <td>
                     {% if entity.public %}

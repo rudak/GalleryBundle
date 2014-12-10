@@ -124,7 +124,7 @@ class Picture
     public function removeUpload()
     {
         if (isset($this->temp)) {
-            if ($this->temp != $this->getDefaultImagePath()) {
+            if ($this->temp != $this->getFullDefaultImagePath()) {
                 unlink($this->temp);
             }
         }
@@ -156,11 +156,14 @@ class Picture
             : $this->getUploadRootDir() . '/' . $this->path;
     }
 
+    public function getFullDefaultImagePath()
+    {
+        return $this->getUploadRootDir() . '/' . $this->getDefaultImagePath();
+    }
+
     public function getDefaultImagePath()
     {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->defaultImagePath;
+        return $this->defaultImagePath;
     }
 
     public function getWebPath()
@@ -222,10 +225,20 @@ class Picture
     /**
      * Get gallery
      *
-     * @return \Rudak\GalleryBundle\Entity\Gallery 
+     * @return \Rudak\GalleryBundle\Entity\Gallery
      */
     public function getGallery()
     {
         return $this->gallery;
     }
+
+    /**
+     * @return string
+     */
+    public function getDir()
+    {
+        return $this->dir;
+    }
+
+
 }

@@ -22,4 +22,15 @@ class GalleryRepository extends EntityRepository
             ->getQuery();
         return $qb->getOneOrNullResult();
     }
+
+    public function getAllGalleriesForIndex()
+    {
+        $qb = $this->createQueryBuilder('g')
+            ->addSelect('p')
+            ->leftJoin('g.pictures', 'p')
+            ->orderBy('g.public', 'DESC')
+            ->addOrderBy('g.id', 'desc')
+            ->getQuery();
+        return $qb->execute();
+    }
 }

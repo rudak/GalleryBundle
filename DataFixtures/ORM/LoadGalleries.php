@@ -10,13 +10,16 @@ use Rudak\GalleryBundle\Entity\Gallery;
 
 class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
 {
+
+    const NOMBRE_GALERIES = 27;
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
         $galleries = array();
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 0; $i < self::NOMBRE_GALERIES; $i++) {
             $galleries[$i] = New Gallery();
             $galleries[$i]->setName(Syllabeur::getMots(rand(1, 2)));
             $galleries[$i]->setDescription(Syllabeur::getMots(rand(5, 60)));
@@ -36,6 +39,6 @@ class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 153;
+        return 381;
     }
 }

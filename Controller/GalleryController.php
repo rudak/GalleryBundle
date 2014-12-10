@@ -23,7 +23,7 @@ class GalleryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('RudakGalleryBundle:Gallery')->findAll();
+        $entities = $em->getRepository('RudakGalleryBundle:Gallery')->getAllGalleriesForIndex();
 
         return $this->render('RudakGalleryBundle:Gallery:index.html.twig', array(
             'entities' => $entities,

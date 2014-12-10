@@ -18,7 +18,9 @@ class GalleryType extends AbstractType
             ->add('name', 'text', array(
                 'label' => 'Nom'
             ))
-            ->add('description')
+            ->add('description', 'textarea', array(
+                'required' => false
+            ))
             ->add('public', 'checkbox', array(
                 'required' => false
             ));
