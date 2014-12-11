@@ -48,7 +48,7 @@ class Picture
     private $temp;
 
     /**
-     * @ORM\manyToOne(targetEntity="Gallery",
+     * @ORM\ManyToOne(targetEntity="Rudak\GalleryBundle\Entity\Gallery",
      * inversedBy="pictures"
      * )
      */

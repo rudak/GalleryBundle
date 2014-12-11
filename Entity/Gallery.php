@@ -50,7 +50,7 @@ class Gallery
     private $date;
 
     /**
-     * @ORM\oneToMany(targetEntity="Picture",
+     * @ORM\OneToMany(targetEntity="Rudak\GalleryBundle\Entity\Picture",
      * mappedBy="gallery",
      * cascade={"remove"}
      * )
