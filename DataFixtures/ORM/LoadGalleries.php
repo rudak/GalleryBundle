@@ -5,7 +5,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Rudak\BlogBundle\Utils\Syllabeur;
+use Rudak\UtilsBundle\Syllabeur;
 use Rudak\GalleryBundle\Entity\Gallery;
 
 class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
