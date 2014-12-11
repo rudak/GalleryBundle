@@ -23,6 +23,23 @@ class GalleryRepository extends EntityRepository
         return $qb->getOneOrNullResult();
     }
 
+
+    public function listOfGalleries()
+    {
+        $qb = $this->createQueryBuilder('g')
+            ->addSelect('p')
+            ->leftJoin('g.pictures', 'p')
+            ->where('p.path IS NOT NULL')
+            ->groupBy('g.id')
+            ->orderBy('g.id', 'DESC')
+            ->getQuery();
+        return $qb->execute();
+    }
+
+    /**
+     * Admin
+     * @return mixed
+     */
     public function getAllGalleriesForIndex()
     {
         $qb = $this->createQueryBuilder('g')

@@ -10,15 +10,15 @@ class DefaultController extends Controller
 
     public function IndexAction()
     {
-        $pictures = $this->getDoctrine()
+        $galleries = $this->getDoctrine()
             ->getManager()
-            ->getRepository('RudakGalleryBundle:Picture')
-            ->getGalleryList();
+            ->getRepository('RudakGalleryBundle:Gallery')
+            ->listOfGalleries();
 
         $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
 
         return $this->render('RudakGalleryBundle:Default:Index.html.twig', array(
-            'pictures' => $pictures
+            'galleries' => $galleries
         ));
     }
 

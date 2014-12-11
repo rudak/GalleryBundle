@@ -2,6 +2,11 @@
 
 {% block title %}RudakGalleryBundle:Default:Index{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendors/fancyBox/source/jquery.fancybox.css') }}"/>
+{% endblock %}
+
+
 {% block body %}
     <div class="row">
         <div class="col-xs-12 col-sm-9">
@@ -17,18 +22,20 @@
                 </div>
             {% endif %}
 
-
-
             <div class="row">
                 {% for picture in gallery.pictures %}
                     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                         <div class="thumbnail">
-                            <img src="{{ picture.getwebpath|imagine_filter('gallery_picture_list_front') }}"
-                                 alt="image {{ picture.id }}"/>
+                            <a class="fancyBox" rel="gallery_{{ gallery.id }}"
+                               href="{{ picture.getwebpath|imagine_filter('gallery_picture_big_front') }}">
+                                <img src="{{ picture.getwebpath|imagine_filter('gallery_picture_list_front') }}"
+                                     alt="image {{ picture.id }}"/>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+
         </div>
         <div class="col-xs-12 col-sm-3">
             <h1>Publicité</h1>
@@ -41,4 +48,15 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('vendors/fancyBox/source/jquery.fancybox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/fancyBox/lib/jquery.mousewheel.pack.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".fancyBox").fancybox();
+        });
+    </script>
 {% endblock %}
