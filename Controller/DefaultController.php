@@ -15,6 +15,23 @@ class DefaultController extends Controller
             ->getRepository('RudakGalleryBundle:Gallery')
             ->listOfGalleries();
 
+        foreach ($galleries as $key => $gallery) {
+
+            if (count($gallery->getPictures()) == 0) {
+                unset($galleries[$key]);
+                continue;
+            }
+            $index = 0;
+            foreach ($gallery->getPictures() as $picture) {
+                if ($index == 0) {
+                    continue;
+                } else {
+                    $gallery->removePicture($picture);
+                }
+                $index++;
+            }
+        }
+
         $this->get('MenuBundle.Handler')->setActiveItem(self::ACTIVE_ITEM);
 
         return $this->render('RudakGalleryBundle:Default:Index.html.twig', array(

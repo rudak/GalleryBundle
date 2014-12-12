@@ -12,6 +12,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class PictureRepository extends EntityRepository
 {
+    public function getLastImage()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('g')
+            ->leftJoin('p.gallery', 'g')
+            ->where('g.public = :public')->setParameter('public', true)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery();
+        return $qb->getOneOrNullResult();
+    }
+
+    public function getRandImage()
+    {
+        $qb       = $this->createQueryBuilder('p')
+            ->addSelect('g')
+            ->leftJoin('p.gallery', 'g')
+            ->where('g.public = :public')->setParameter('public', true)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults('200')
+            ->getQuery();
+        $pictures = $qb->execute();
+        shuffle($pictures);
+        return $pictures[0];
+    }
+
     public function getGalleryList()
     {
         $qb = $this->createQueryBuilder('p')

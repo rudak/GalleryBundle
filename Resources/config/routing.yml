@@ -14,3 +14,15 @@ rudak_gallery_admin_gallery:
     resource: "@RudakGalleryBundle/Resources/config/routing/gallery.yml"
     prefix:   /admin/gallery
 
+
+rand_image:
+    path:     /randImage
+    defaults: { _controller: RudakGalleryBundle:Render:randImage }
+
+last_image:
+    path:     /lastImage
+    defaults: { _controller: RudakGalleryBundle:Render:lastImage }
+
+carousel:
+    path:     /carousel
+    defaults: { _controller: RudakGalleryBundle:Render:carousel }

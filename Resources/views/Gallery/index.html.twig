@@ -28,6 +28,7 @@
             <th>Public</th>
             <th>Date de création</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +43,11 @@
                     {% endif %}
                 </td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <span class="label label-success">
+                        {{ entity.pictures|length }}
+                    </span>
+                </td>
                 <td>
                     <a href="{{ path('admin_gallery_show', { 'id': entity.id }) }}" class="btn btn-xs btn-default">
                         Voir

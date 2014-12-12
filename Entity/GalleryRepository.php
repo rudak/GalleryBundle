@@ -29,9 +29,9 @@ class GalleryRepository extends EntityRepository
         $qb = $this->createQueryBuilder('g')
             ->addSelect('p')
             ->leftJoin('g.pictures', 'p')
-            ->where('p.path IS NOT NULL')
-            ->groupBy('g.id')
+            ->where('g.public = :public')->setParameter('public', true)
             ->orderBy('g.id', 'DESC')
+            ->addOrderBy('p.id', 'DESC')
             ->getQuery();
         return $qb->execute();
     }

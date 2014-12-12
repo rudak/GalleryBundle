@@ -29,13 +29,8 @@
 
         </div>
         <div class="col-xs-12 col-sm-3">
-            <h1>Publicité</h1>
-
-            <div class="well">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi harum, inventore nam nulla odit
-                    recusandae voluptas? Ab animi architecto consequuntur deserunt enim iste neque officia rerum sunt
-                    unde? Consequatur, ullam?</p>
-            </div>
+            {{ render(controller('RudakGalleryBundle:Render:randImage')) }}
+            {{ render(controller('RudakGalleryBundle:Render:lastImage')) }}
         </div>
     </div>
 

@@ -164,6 +164,8 @@ class Gallery
     {
         return ucfirst($this->name) . ' | Ajouté le ' . $this->date->format('d/m/y');
     }
+
+
     /**
      * Constructor
      */
@@ -198,7 +200,7 @@ class Gallery
     /**
      * Get pictures
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPictures()
     {

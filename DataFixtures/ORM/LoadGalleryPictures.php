@@ -10,7 +10,7 @@ use Rudak\PictureGrabber\Model\PictureGrabber;
 class LoadGalleryPictures extends AbstractFixture implements OrderedFixtureInterface
 {
 
-    const NOMBRE_IMAGES = 465;
+    const NOMBRE_IMAGES = 45;
 
     /**
      * {@inheritDoc}
