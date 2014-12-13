@@ -1,4 +1,4 @@
-{% extends main_layout %}
+{% extends gallery_layout %}
 
 {% block title %}RudakGalleryBundle:Default:Index{% endblock %}
 
@@ -7,45 +7,31 @@
 {% endblock %}
 
 
-{% block body %}
-    <div class="row">
-        <div class="col-xs-12 col-sm-9">
-            <h1 class="main_title">{{ gallery.name }}</h1>
+{% block content %}
+    <h1 class="main_title">{{ gallery.name }}</h1>
 
-            {% if gallery.description %}
-                <div id="gallery_description">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            {{ gallery.description|capitalize }}
-                        </div>
-                    </div>
+    {% if gallery.description %}
+        <div id="gallery_description">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ gallery.description|capitalize }}
                 </div>
-            {% endif %}
-
-            <div class="row">
-                {% for picture in gallery.pictures %}
-                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                        <div class="thumbnail">
-                            <a class="fancyBox" rel="gallery_{{ gallery.id }}"
-                               href="{{ picture.getwebpath|imagine_filter('gallery_picture_big_front') }}">
-                                <img src="{{ picture.getwebpath|imagine_filter('gallery_picture_list_front') }}"
-                                     alt="image {{ picture.id }}"/>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-        </div>
-        <div class="col-xs-12 col-sm-3">
-            <h1>Publicité</h1>
-
-            <div class="well">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi harum, inventore nam nulla odit
-                    recusandae voluptas? Ab animi architecto consequuntur deserunt enim iste neque officia rerum sunt
-                    unde? Consequatur, ullam?</p>
             </div>
         </div>
+    {% endif %}
+
+    <div class="row">
+        {% for picture in gallery.pictures %}
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="thumbnail">
+                    <a class="fancyBox" rel="gallery_{{ gallery.id }}"
+                       href="{{ picture.getwebpath|imagine_filter('gallery_picture_big_front') }}">
+                        <img src="{{ picture.getwebpath|imagine_filter('gallery_picture_list_front') }}"
+                             alt="image {{ picture.id }}"/>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

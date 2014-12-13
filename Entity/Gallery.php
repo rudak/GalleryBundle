@@ -162,7 +162,8 @@ class Gallery
 
     public function __toString()
     {
-        return ucfirst($this->name) . ' | Ajouté le ' . $this->date->format('d/m/y');
+
+        return ucfirst($this->name) . ' | '.($this->getPublic() ? 'Public' : 'Privé') . ' | Ajouté le ' . $this->date->format('d/m/y');
     }
 
 
