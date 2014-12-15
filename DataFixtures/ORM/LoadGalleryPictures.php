@@ -35,7 +35,7 @@ class LoadGalleryPictures extends AbstractFixture implements OrderedFixtureInter
             $entities[$i]->setGallery($this->getReference('gallery_' . rand(1, LoadGalleries::getGalleriesNumber())));
             $manager->persist($entities[$i]);
 
-            echo 'Image [' . $i . '/' . self::NOMBRE_IMAGES . ']: ' . $image . "\n";
+            echo 'Image [' . ($i + 1) . '/' . self::NOMBRE_IMAGES . ']: ' . $image . "\n";
         }
         echo "\n";
         $manager->flush();

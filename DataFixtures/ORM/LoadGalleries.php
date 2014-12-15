@@ -21,19 +21,10 @@ class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
     {
         echo "CREATION GALERIES : \n";
         $galleries = array();
-        $fcg       = new FakeContentGenerator();
         for ($i = 1; $i <= self::NOMBRE_GALERIES; $i++) {
             $galleries[$i] = New Gallery();
-            $galleries[$i]->setName($fcg
-                ->setTags(false)
-                ->setSentenceLength(rand(2, 3))
-                ->setSentenceNumber(1)
-                ->getRandSentence());
-            $galleries[$i]->setDescription($fcg
-                ->setTags(false)
-                ->setSentenceLength(rand(15, 35))
-                ->setSentenceNumber(1)
-                ->getRandSentence());
+            $galleries[$i]->setName(FakeContentGenerator::getSmallTitle());
+            $galleries[$i]->setDescription(FakeContentGenerator::getSentence());
             $galleries[$i]->setDate(new \DateTime('-' . rand(150, 900) . 'hour'));
             $galleries[$i]->setPublic(rand(0, 1));
             $manager->persist($galleries[$i]);
