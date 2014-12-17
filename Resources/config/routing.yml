@@ -1,5 +1,5 @@
 rudak_gallery_index:
-    pattern: /galerie
+    pattern: /les-galeries
     defaults: { _controller: RudakGalleryBundle:Default:index }
 
 rudak_gallery_gallery:
@@ -13,7 +13,6 @@ rudak_gallery_admin_gallery_picture:
 rudak_gallery_admin_gallery:
     resource: "@RudakGalleryBundle/Resources/config/routing/gallery.yml"
     prefix:   /admin/gallery
-
 
 rand_image:
     path:     /randImage

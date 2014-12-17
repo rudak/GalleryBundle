@@ -1,7 +1,9 @@
 <div class="pub">
     <h2 class="title">Derniere image</h2>
 
-    <div class="thumbnail">
+    <a class="thumbnail"
+       href="{{ path('rudak_gallery_gallery',{id:picture.gallery.id,slug:picture.gallery.name|slugit}) }}"
+       title="Aller vers la galerie correspondante">
         <img src="{{ picture.getwebpath|imagine_filter('gallery_index_front') }}" alt="image {{ picture.id }}"/>
-    </div>
+    </a>
 </div>
