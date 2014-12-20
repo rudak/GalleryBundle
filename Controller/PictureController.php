@@ -44,7 +44,10 @@ class PictureController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Image envoyée avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_gallery_picture_show', array('id' => $entity->getId())));
         }
 
@@ -182,7 +185,10 @@ class PictureController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Image modifiée avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_gallery_picture_edit', array('id' => $id)));
         }
 
@@ -212,6 +218,10 @@ class PictureController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Image supprimée avec succès !'
+            );
         }
 
         return $this->redirect($this->generateUrl('admin_gallery_picture'));

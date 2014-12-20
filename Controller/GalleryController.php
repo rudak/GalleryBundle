@@ -45,7 +45,10 @@ class GalleryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Galerie créée avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_gallery_show', array('id' => $entity->getId())));
         }
 
@@ -182,7 +185,10 @@ class GalleryController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Modifiée avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_gallery_edit', array('id' => $id)));
         }
 
@@ -212,6 +218,10 @@ class GalleryController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Galerie supprimée avec succès !'
+            );
         }
 
         return $this->redirect($this->generateUrl('admin_gallery'));
