@@ -11,7 +11,7 @@ use Rudak\PictureGrabber\Model\PictureGrabber;
 class LoadGalleryPictures extends AbstractFixture implements OrderedFixtureInterface
 {
 
-    const NOMBRE_IMAGES = 15;
+    const NOMBRE_IMAGES = 150;
 
     /**
      * {@inheritDoc}
@@ -39,6 +39,7 @@ class LoadGalleryPictures extends AbstractFixture implements OrderedFixtureInter
         }
         echo "\n";
         $manager->flush();
+        echo "TERMINE\n -------------------- \n";
     }
 
     /**
@@ -46,6 +47,6 @@ class LoadGalleryPictures extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 382;
+        return 1382;
     }
 }

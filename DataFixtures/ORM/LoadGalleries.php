@@ -12,7 +12,7 @@ use Rudak\GalleryBundle\Entity\Gallery;
 class LoadGalleries extends AbstractFixture implements OrderedFixtureInterface
 {
 
-    const NOMBRE_GALERIES = 6;
+    const NOMBRE_GALERIES = 23;
 
     /**
      * {@inheritDoc}

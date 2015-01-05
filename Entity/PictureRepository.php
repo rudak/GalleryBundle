@@ -35,7 +35,7 @@ class PictureRepository extends EntityRepository
             ->getQuery();
         $pictures = $qb->execute();
         shuffle($pictures);
-        return $pictures[0];
+        return ($pictures) ? $pictures[0] : null;
     }
 
     public function getGalleryList()

@@ -12,6 +12,10 @@ class RenderController extends Controller
         $picture = $this->getDoctrine()->getManager()
             ->getRepository('RudakGalleryBundle:Picture')->getRandImage();
 
+        if (!$picture) {
+            return new Response('');
+        }
+
         $content = $this->renderView('RudakGalleryBundle:Render:randImage.html.twig', array(
             'picture' => $picture
         ));
