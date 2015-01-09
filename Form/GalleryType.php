@@ -16,7 +16,10 @@ class GalleryType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'attr'  => array(
+                    'placeholder' => 'Nom très court'
+                )
             ))
             ->add('description', 'textarea', array(
                 'required' => false
