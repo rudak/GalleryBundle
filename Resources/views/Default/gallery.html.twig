@@ -1,6 +1,7 @@
 {% extends gallery_layout %}
 
-{% block title %}RudakGalleryBundle:Default:Index{% endblock %}
+
+{% block title %}{{ gallery.name }} | {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('vendors/fancyBox/source/jquery.fancybox.css') }}"/>

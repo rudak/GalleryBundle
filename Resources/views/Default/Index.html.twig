@@ -1,27 +1,35 @@
 {% extends gallery_index_layout %}
 
-{% block title %}RudakGalleryBundle:Default:Index{% endblock %}
+{% block title %}Galeries photo | {{ parent() }}{% endblock %}
 
 {% block content %}
     <h1 class="main_title">Galeries photo</h1>
 
     <div class="row">
-        {% for gallery in galleries %}
-            <div class="col-xs-12 col-sm-6 col-lg-4">
-                <div class="thumbnail">
-                    <img src="{{ gallery.pictures[0].getwebpath|imagine_filter('gallery_index_front') }}"
-                         alt="{{ gallery.name }} image {{ gallery.pictures[0].id }}"/>
+        {% if galleries|length %}
+            {% for gallery in galleries %}
+                <div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="thumbnail">
+                        <img src="{{ gallery.pictures[0].getwebpath|imagine_filter('gallery_index_front') }}"
+                             alt="{{ gallery.name }} image {{ gallery.pictures[0].id }}"/>
 
-                    <div class="caption">
+                        <div class="caption">
 
-                        <a class="btn btn-custom btn-block"
-                           href="{{ path('rudak_gallery_gallery',{id:gallery.id,slug:gallery.name|slugit}) }}"
-                           title="{{ gallery.name }} | Galerie crée le {{ gallery.date|date('d/m/Y') }} [{{ gallery|length }}]">
-                            {{ gallery.name|capitalize }}
-                        </a>
+                            <a class="btn btn-custom btn-block"
+                               href="{{ path('rudak_gallery_gallery',{id:gallery.id,slug:gallery.name|slugit}) }}"
+                               title="{{ gallery.name }} | Galerie crée le {{ gallery.date|date('d/m/Y') }} [{{ gallery|length }}]">
+                                {{ gallery.name|capitalize }}
+                            </a>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-xs-12">
+                <p>
+                    Aucune galeries pour l'instant.
+                </p>
             </div>
-        {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}
