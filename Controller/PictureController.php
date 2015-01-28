@@ -48,6 +48,8 @@ class PictureController extends Controller
                 'success',
                 'Image envoyée avec succès !'
             );
+            $this->logging($this->getUser()->getUsername(), sprintf('Ajout d\'une photo [#%d]', $entity->getId()), 'Gallery');
+
             return $this->redirect($this->generateUrl('admin_gallery_picture_show', array('id' => $entity->getId())));
         }
 
@@ -189,6 +191,8 @@ class PictureController extends Controller
                 'success',
                 'Image modifiée avec succès !'
             );
+            $this->logging($this->getUser()->getUsername(), sprintf('Modification d\'une photo [#%d]', $entity->getId()), 'Gallery');
+
             return $this->redirect($this->generateUrl('admin_gallery_picture_edit', array('id' => $id)));
         }
 
@@ -215,6 +219,7 @@ class PictureController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Picture entity.');
             }
+            $this->logging($this->getUser()->getUsername(), sprintf('Suppression d\'une photo [#%d]', $entity->getId()), 'Gallery');
 
             $em->remove($entity);
             $em->flush();
@@ -245,5 +250,14 @@ class PictureController extends Controller
                     'class' => 'btn btn-danger'
                 )))
             ->getForm();
+    }
+
+    private function logging($user, $action, $category)
+    {
+        try {
+            $OwnLogger = $this->get('rudak.own.logger');
+            $OwnLogger->addEntry($user, $action, $category, new \DateTime());
+        } catch (\Exception $e) {
+        }
     }
 }

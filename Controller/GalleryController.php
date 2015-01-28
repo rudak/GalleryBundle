@@ -49,6 +49,10 @@ class GalleryController extends Controller
                 'success',
                 'Galerie créée avec succès !'
             );
+
+            $this->logging($this->getUser()->getUsername(), sprintf('Création d\'une galerie [#%d]', $entity->getId()), 'Gallery');
+
+
             return $this->redirect($this->generateUrl('admin_gallery_show', array('id' => $entity->getId())));
         }
 
@@ -184,6 +188,9 @@ class GalleryController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            $this->logging($this->getUser()->getUsername(), sprintf('Modification d\'une galerie [#%d]', $entity->getId()), 'Gallery');
+
             $em->flush();
             $this->get('session')->getFlashBag()->add(
                 'success',
@@ -216,6 +223,8 @@ class GalleryController extends Controller
                 throw $this->createNotFoundException('Unable to find Gallery entity.');
             }
 
+            $this->logging($this->getUser()->getUsername(), sprintf('Suppression d\'une galerie [#%d]', $entity->getId()), 'Gallery');
+
             $em->remove($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add(
@@ -245,5 +254,14 @@ class GalleryController extends Controller
                     'class' => 'btn btn-danger'
                 )))
             ->getForm();
+    }
+
+    private function logging($user, $action, $category)
+    {
+        try {
+            $OwnLogger = $this->get('rudak.own.logger');
+            $OwnLogger->addEntry($user, $action, $category, new \DateTime());
+        } catch (\Exception $e) {
+        }
     }
 }
