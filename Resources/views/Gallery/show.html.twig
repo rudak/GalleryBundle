@@ -34,7 +34,7 @@
             <th>Description</th>
             <td>
                 <div class="well">
-                    {{ entity.description }}
+                    {{ entity.description|default('Non renseignée pour l\'instant...') }}
                 </div>
             </td>
         </tr>
