@@ -18,7 +18,7 @@
                             <a class="btn btn-custom btn-block"
                                href="{{ path('rudak_gallery_gallery',{id:gallery.id,slug:gallery.name|slugit}) }}"
                                title="{{ gallery.name }} | Galerie crée le {{ gallery.date|date('d/m/Y') }} [{{ gallery|length }}]">
-                                {{ gallery.name|capitalize }}
+                                {{ gallery.name }}
                             </a>
                         </div>
                     </div>
